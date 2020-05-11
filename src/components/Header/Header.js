@@ -25,7 +25,7 @@ const Header = ({
     const navigationItems = {
         signedInLinks:[
             {link:'/products',name:'Home'},
-            {link:'/cart',name:`🛒${cartCount}`},
+            {link:'/cart',name:`Cart -> 🛒${cartCount}`},
         ],
         signedOutLinks:[
             {link:'/login',name:'Login'},

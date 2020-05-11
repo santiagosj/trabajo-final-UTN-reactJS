@@ -1,6 +1,6 @@
 # Todos
 * Components:
-  - Cart
+  - Cart ✅
 * Services: 
   - Database
-  - Cart Context
+  - Cart Context 🤘 ✅
