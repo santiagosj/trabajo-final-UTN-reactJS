@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import Login from '../Auth/Login'
 import Registro from '../Auth/Registro'
 import ProductRouter from '../Gondola/ProductRouter';
+import Cart from '../Cart/Cart';
 
 const MainContent = ({loged}) => {
 
@@ -20,6 +21,7 @@ const MainContent = ({loged}) => {
                   {loged && (
                          <Switch>
                             <Route  path={'/products'} component={ProductRouter}/>
+                            <Route path ={'/cart'} component={Cart}/>
                             <Redirect to="/products"/>
                          </Switch>
                   )}

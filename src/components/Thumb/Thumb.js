@@ -1,5 +1,9 @@
 import React from 'react'
 
+const styles = {
+  maxWidth: '250px'
+}
+
 const Thumb = ({
     classes,
     src,
@@ -7,7 +11,12 @@ const Thumb = ({
     title
 }) => (
   <div className={classes}>
-      <img src={src} alt={alt} title={title} />
+      <img 
+        src={src} 
+        alt={alt} 
+        title={title} 
+        style={styles}
+      />
   </div>
 );
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProductDetail = () => {
+const ProductDetail = ({match}) => {
     return (
         <div>
             <h1>Product Detail page </h1>

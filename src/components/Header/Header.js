@@ -3,6 +3,7 @@ import NavItem from '../NevItem/NavItem'
 import './Header.scss'
 //import { useHistory } from "react-router-dom";
 import {firebaseAuth} from '../../services/Context/FirebaseAuthProvider'
+import ProductContext from '../../services/Context/ProductContext'
 
 const Header = ({
    classHeader,
@@ -14,6 +15,8 @@ const Header = ({
     
     const {handleSignOut} = useContext(firebaseAuth)
 
+    const {cartCount} = useContext(ProductContext)
+
     const handleLogout = () => {
         handleSignOut()
        // history.push("/login");
@@ -22,6 +25,7 @@ const Header = ({
     const navigationItems = {
         signedInLinks:[
             {link:'/products',name:'Home'},
+            {link:'/cart',name:`🛒${cartCount}`},
         ],
         signedOutLinks:[
             {link:'/login',name:'Login'},

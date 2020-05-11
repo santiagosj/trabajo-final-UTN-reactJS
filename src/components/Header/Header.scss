@@ -3,7 +3,7 @@
     box-shadow: 0 0.5em 1.5em rgba(0,0,0,.3);
     position: fixed;
     width: 100%;
-    height: 89px;
+    height: 65px;
     top: 0;
     left: 0;
     z-index: 100;
@@ -12,6 +12,7 @@
 header{
     
     .header-conent{
+        height: inherit;
         display: flex;
         width: 80%;
         align-items: center;
@@ -53,24 +54,26 @@ header{
             span{
                 position: relative;
                 margin-right: 20px;
+                &::after{
+                    content: '▼';
+                    position: fixed;
+                    top: 27px;
+                    margin-left: 6px;
+                    text-align: right;
+                    transition: .3s ease-in-out;
+                    font-size: 12px;
+                }
+                &:hover::after{
+                    transition: .3s ease-in-out;
+                    transform: rotate(90deg);
+                }
             }
             /*.Image--container{
                 border-radius: 50%;
                 overflow: hidden;
                 margin-left: auto;
                 height: 55px;
-                &::after{
-                    content:'▼';
-                    position: fixed;
-                    top: 30px;
-                    margin-left: 6px;
-                    text-align: right;
-                    transition: .3s ease-in-out;
-                }
-                &:hover::after{
-                    transition: .3s ease-in-out;
-                    transform: rotate(90deg);
-                }
+               
                 
                 img{
                     max-width: 55px;
@@ -81,15 +84,19 @@ header{
             position: absolute;
             display: flex;
             flex-direction: column;
-            background-color: white;
+            background-color: rgb(199, 199, 199);
             width: 190px;
             justify-content: space-evenly;
             list-style-type: none;
             text-align: center;
-            height: 74px;
+            height: 50px;
             top: 79px;
+            transition: .3s ease-in-out;
+            
             button{
-                font-family: monospace;
+                letter-spacing: 2px;
+                font-size: 19px;
+                height: -webkit-fill-available;
                 border: none;
                 background: transparent;
                 &:hover{
@@ -99,6 +106,7 @@ header{
         }
         .Nav-inactive{
             display: none;
+            transition: .3s ease-in-out;
         }
         
     }

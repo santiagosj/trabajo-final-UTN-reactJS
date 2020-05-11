@@ -43,7 +43,7 @@ const AppHolder = () => {
                loged={loged}
                userName={userData.email}
              />
-            <MainContent loged={loged}/>
+             <MainContent loged={loged}/>
         </div>
      )
 }
