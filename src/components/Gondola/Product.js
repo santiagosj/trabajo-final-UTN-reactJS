@@ -1,6 +1,6 @@
 import React,{useContext} from 'react'
 import Thumb from '../Thumb/Thumb'
-import ProductContext from '../../services/Context/ProductContext'
+import {ProductContext} from '../../services/Context/ProductsProvider'
 import {Link} from 'react-router-dom'
 const Product = ({product}) => {
 
@@ -16,7 +16,7 @@ const Product = ({product}) => {
                 src={img}
                 alt={title}
             />
-       </Link>
+        </Link>
             <p className="shelf-item__title">
                {title}
             </p>
@@ -24,8 +24,6 @@ const Product = ({product}) => {
             <div>
                <p>precio:${price}</p>
             </div>
-
-            
 
            <AddBtn product={product}/>
 

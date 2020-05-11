@@ -3,7 +3,7 @@ import NavItem from '../NevItem/NavItem'
 import './Header.scss'
 //import { useHistory } from "react-router-dom";
 import {firebaseAuth} from '../../services/Context/FirebaseAuthProvider'
-import ProductContext from '../../services/Context/ProductContext'
+import {ProductContext} from '../../services/Context/ProductsProvider'
 
 const Header = ({
    classHeader,

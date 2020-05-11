@@ -1,5 +1,5 @@
-import React,{useState} from 'react'
-import ProductContext from '../Context/ProductContext'
+import React,{useState,createContext} from 'react'
+//mport ProductContext from '../Context/ProductContext'
 
 /**
  * 
@@ -9,6 +9,7 @@ import ProductContext from '../Context/ProductContext'
  * 2- Hacer la suma del cart acá
  *    const totalPrice = cart.reduce((acc, curr) => acc + curr.price, 0);
  */
+export const ProductContext = createContext()
 
 const ProductsProvider = ({children}) => {
 
