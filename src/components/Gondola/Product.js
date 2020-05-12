@@ -1,10 +1,10 @@
 import React,{useContext} from 'react'
 import Thumb from '../Thumb/Thumb'
-import {ProductContext} from '../../services/Context/ProductsProvider'
+import {CartContext} from '../../services/Context/CartProvider'
 import {Link} from 'react-router-dom'
 const Product = ({product}) => {
 
-    const {id, img, title, price} = product
+    const {id, prevImg, title, price} = product
 
     return (
         <div className="shelf-item"
@@ -12,8 +12,7 @@ const Product = ({product}) => {
         >
         <Link to={`/products/${id}`} className="link">
             <Thumb 
-                classes="shelf-item__thumb"
-                src={img}
+                src={prevImg}
                 alt={title}
             />
         </Link>
@@ -32,7 +31,8 @@ const Product = ({product}) => {
 }
 
 const AddBtn = ({product}) => {
-    const productState = useContext(ProductContext)
+    const productState = useContext(CartContext)
+    
     return(
         <button className="shelf-item__buy-btn" onClick={()=> productState.addProduct(product)}>Agregar al carrito</button>
     )

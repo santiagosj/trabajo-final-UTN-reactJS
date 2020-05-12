@@ -3,7 +3,7 @@ import NavItem from '../NevItem/NavItem'
 import './Header.scss'
 //import { useHistory } from "react-router-dom";
 import {firebaseAuth} from '../../services/Context/FirebaseAuthProvider'
-import {ProductContext} from '../../services/Context/ProductsProvider'
+import {CartContext} from '../../services/Context/CartProvider'
 
 const Header = ({
    classHeader,
@@ -15,7 +15,7 @@ const Header = ({
     
     const {handleSignOut} = useContext(firebaseAuth)
 
-    const {cartCount} = useContext(ProductContext)
+    const {cartCount} = useContext(CartContext)
 
     const handleLogout = () => {
         handleSignOut()

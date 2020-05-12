@@ -1,17 +1,47 @@
 import React, { useContext } from 'react'
-import {ProductContext} from '../../services/Context/ProductsProvider'
+import {CartContext} from '../../services/Context/CartProvider'
 
-const CartItem = ({cartData}) => {
+/**
+ *  DEFINIR - 
+ *  increseQuantity 
+ *  decreseQuantity
+ * 
+ */
 
-    const state = useContext(ProductContext)
+const CartItem = ({
+      cartData,
+      changeProductQuantity
+     }) => {
+
+    const cartState = useContext(CartContext)
+
 
     const rows = cartData.map((product,index)=>{
+
+        const increseQuantity = () =>{
+            console.log(product.quantity += 1 )
+         }
+     
+         const decreseQuantity = () =>{
+            console.log(product.quantity -= 1 )
+         }
+
+          const unidiadesStyle = product.quantity === 1 ? {textDecoration:'line-through'} : {textDecoration:'none'}
+
         return (
             <tr key={index}>
                 <td> {product.title} </td>
                 <td> $ {product.price} </td>
+                <td> 
+                    {
+                    (product.quantity > 1 && `${product.quantity} Unidades `) 
+                       ||                                                 //===============>>>> 💥💥👾👾👾👾
+                    (product.quantity === 1 && `${product.quantity} Unidad `) 
+                    } 
+                    <button onClick={increseQuantity}> + </button> Agregar unidades | <button onClick={decreseQuantity} disabled={product.quantity === 1 && true}> - </button> <span style={unidiadesStyle}>Quitar Unidades</span> 
+                </td>
                 <td>
-                   <button onClick={()=> state.removeProduct(state.cart.indexOf(product))}> X </button> | Sacar del carrito
+                   <button onClick={()=> cartState.removeProduct(cartState.cart.indexOf(product))}> X </button> | Sacar del carrito 
                 </td>
              </tr>
         )
