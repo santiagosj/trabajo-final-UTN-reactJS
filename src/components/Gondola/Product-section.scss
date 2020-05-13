@@ -3,7 +3,7 @@
     justify-content: space-between;
     margin-bottom: 50px;
     flex-wrap: wrap;
-    width: 82%;
+    width: 68%;
     margin: auto;
     .shelf-item{
         display: flex;
@@ -11,31 +11,27 @@
         justify-content: space-between;
         text-align: center;
         font-weight: bold;
-        width: 230px;
+        width: 242px;
         margin: 50px auto;
+        transition: .3s ease-in-out;
+        padding: 10px;
+        &:hover{
+            transition: .3s ease-in-out;
+            box-shadow: 0px 0px 0px 1px rgb(204, 204, 204);
+        }
         .link{
-            &::before{
-                position: absolute;
-                height: 326px;
-                align-items: center;
-                width: 230px;
-                justify-content: center;
-                display: flex;
-                color: white;
-                content: 'Ver producto';
-                background-color: black;
-                opacity: 0;
-                transition: .3s ease-in-out;
-               }
-        
-               &:hover::before{
-                transition: .3s ease-in-out;
-                 opacity: 0.5;
-               }
+            text-decoration: none;
+            color: black;
+            box-shadow: 0px 0px 0px 1px;
+            padding: 16px;
         }
        
         .shelf-item__buy-btn{
             height: 50px;
+            font-weight: 800;
+            border: none;
+            box-shadow: 0px 0px 0px 1px;
+            background: transparent;
             &:hover{
                 cursor: pointer;
             }

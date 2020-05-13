@@ -11,28 +11,32 @@ import './Cart.scss'
 const Cart = () => {
 
      const{ cart }= useContext(CartContext)
-     
-     console.log(typeof cart)
+    
 
      const totalPrice = cart.reduce((acc, curr) => acc + curr.price, 0);
+
      const checkout = ()=> {
-       alert(`El total de su compra es: $ ${totalPrice} Gracias por comprar en lo de la china`)
+       totalPrice > 0 ? 
+       alert(`El total de su compra es: $ ${totalPrice} 
+              Gracias por comprar en los chinos 🎎 achu!`) : 
+       alert(`No hay productos en el carrito 🛒`)
      }
 
     return (
-        <table id="customers">
+      <div className="cart-container">
+      <table id="customers">
             <CartHeader/>
-             <CartItem 
-               cartData={cart}
-             />
+            <CartItem 
+              cartData={cart}
+            />
             <tfoot>
-              <tr>
-                <td>Precio total: ${totalPrice}</td>
-              </tr>
-              <button onClick={checkout}>Comprar</button>
+                <tr>
+                  <td>Precio total: ${totalPrice}</td>
+                </tr>
             </tfoot> 
-            
-        </table>
+      </table>
+        <button onClick={checkout}>Comprar</button>
+      </div>
     )
 }
 

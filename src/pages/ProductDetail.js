@@ -3,7 +3,9 @@ import {db} from '../services/Firebase/firebase'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import Thumb from '../components/Thumb/Thumb'
-import './ProductDetail.scss'
+import './ProductDetail.scss';
+import { Link } from 'react-router-dom'
+
 const ProductDetail = ({match}) => {
 
     const [data,setData]=useState({})
@@ -18,20 +20,24 @@ const ProductDetail = ({match}) => {
       }, [match])  
      
     return (
-        <div>
+        <div className="product-detail-section">
             <h1>Product Detail page </h1>
             <h2>{data.title}</h2>
             <section className="product-detail-container">
-                {!!data.productImgs && <Carousel emulateTouch>
+                {!!data.productImgs && <Carousel emulateTouch showThumbs={false}>
                     {data.productImgs && data.productImgs.map((imgSrc, i ) => 
                         <Thumb src={imgSrc.src} alt={`foto${i}`} key={i}/>
                     )}
                 </Carousel>}
                 <p className="product-description">
-                   {data.description}
+                   {data.description} <br/>
+                   ---------------------------------------------------<br/>
+                   precio: $ {data.price} | categoría: {data.category}
                 </p>
+                
+                 
             </section>
-            
+            <Link to={'/products'}>Volver </Link>
         </div>
     )
 }

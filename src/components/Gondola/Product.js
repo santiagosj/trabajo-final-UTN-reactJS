@@ -10,11 +10,12 @@ const Product = ({product}) => {
         <div className="shelf-item"
              data-id={id} 
         >
-        <Link to={`/products/${id}`} className="link">
-            <Thumb 
+        <Thumb 
                 src={prevImg}
                 alt={title}
             />
+        <Link to={`/products/${id}`} className="link">
+             ver producto
         </Link>
             <p className="shelf-item__title">
                {title}
