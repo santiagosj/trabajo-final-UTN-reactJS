@@ -17,8 +17,7 @@ const Cart = () => {
 
      const checkout = ()=> {
        totalPrice > 0 ? 
-       alert(`El total de su compra es: $ ${totalPrice} 
-              Gracias por comprar en los chinos 🎎 achu!`) : 
+       alert(`El total de su compra es: $ ${totalPrice} \n ✨Gracias por elegirnos vuelva pronto✨`) : 
        alert(`No hay productos en el carrito 🛒`)
      }
 
