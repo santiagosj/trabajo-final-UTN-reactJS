@@ -3,7 +3,7 @@
     justify-content: space-between;
     margin-bottom: 50px;
     flex-wrap: wrap;
-    width: 92%;
+    width: 82%;
     margin: auto;
     .shelf-item{
         display: flex;
@@ -16,7 +16,7 @@
         .link{
             &::before{
                 position: absolute;
-                height: 126px;
+                height: 326px;
                 align-items: center;
                 width: 230px;
                 justify-content: center;

@@ -15,6 +15,9 @@ const Cart = () => {
      console.log(typeof cart)
 
      const totalPrice = cart.reduce((acc, curr) => acc + curr.price, 0);
+     const checkout = ()=> {
+       alert(`El total de su compra es: $ ${totalPrice} Gracias por comprar en lo de la china`)
+     }
 
     return (
         <table id="customers">
@@ -26,7 +29,9 @@ const Cart = () => {
               <tr>
                 <td>Precio total: ${totalPrice}</td>
               </tr>
+              <button onClick={checkout}>Comprar</button>
             </tfoot> 
+            
         </table>
     )
 }

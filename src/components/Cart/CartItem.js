@@ -23,7 +23,9 @@ const CartItem = ({
          }
      
          const decreseQuantity = () =>{
-            console.log(product.quantity -= 1 )
+            if(product.quantity > 1){
+               console.log(product.quantity -= 1 )
+            }
          }
 
           const unidiadesStyle = product.quantity === 1 ? {textDecoration:'line-through'} : {textDecoration:'none'}
