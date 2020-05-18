@@ -8,32 +8,22 @@ const CartProvider = ({children}) => {
     const initState = {
         cart:[], //<-- lista de productos únicos
         cartCount:0, //<-- cantidad de productos en el cart
-        addProduct: addProduct, //<-- funcion para agregar productos al Cart
-        removeProduct: removeProduct, // <-- funcion para sacar un producto 
-        totalPrice: 0 //<-- precio total del Cart
+        totalPrice: 0, //<-- precio total del Cart
+        addProduct: addProduct, //<-- función para agregar productos al Cart
+        removeProduct: removeProduct, // <-- función para sacar el producto del Cart 
+        increseQuantity:increseQuantity,// <--función para incrementar la cantidad
+        decreseQuantity:decreseQuantity // <-- función para disminuir la cantidad
     }
 
-    /**
-     * 
-     * producto:{
-     *      quantity[number]
-     *      id[string]
-     *      price[number]
-     *      total:[number]
-     *      title[string]
-     *      description[string]
-     *    }
-     * 
-     */
-
     const [cartState, setCartState] = useState(initState)
-    
-    //agregar productos al carrito
+
+//=====================================================================
+                //agregar productos al carrito
+//=====================================================================
 
     function addProduct(product){
-       let cartList = cartState.cart // propiedad cart[] del estado del Cart
-       // let tp = cartState.totalPrice // propiedad totalPrice del estado del Cart
-
+       const cartList = cartState.cart // propiedad cart[] del estado del Cart
+      
        //producto nuevo a agregar al carrito 
        const newProduct = {
            quantity:1,
@@ -44,15 +34,13 @@ const CartProvider = ({children}) => {
            total:product.price
        }
 
-       //producto único agregado al carrito
-       const productoAgregadoAlCart = cartList.filter(i => i.id === product.id) 
+       const productoAgregadoAlCart = cartList.filter(i => i.id === product.id) // <-- producto único agregado al carrito
 
        if(productoAgregadoAlCart.length > 0){
 
-           const pos = cartList.map(i => i.id).indexOf(product.id) // pos = id del producto
-
+           const pos = cartList.map(i => i.id).indexOf(product.id) // <-- posicion del porducto en el Cart[] 
+    
            cartList[pos].quantity += 1;
-           
            cartList[pos].total += cartList[pos].price
 
        }else{
@@ -65,8 +53,9 @@ const CartProvider = ({children}) => {
        
     } 
 
-    //Sacar productos del carrito
-
+//=====================================================================
+                    //Sacar productos del carrito
+//=====================================================================
     function removeProduct(index){
 
         const cartList = cartState.cart;
@@ -76,14 +65,59 @@ const CartProvider = ({children}) => {
         setCartState({...cartState, cart: cartList, cartCount:getCartCount(), totalPrice:getTotalPrice()})
 
     }
+//=====================================================================
+                         //increseQuantity
+//=====================================================================    
 
-    //recorre todo el array cart y de cada objeto obtiene el valor quantity y devuelve un solo valor 
+    function increseQuantity(product){
+        const cartList = cartState.cart;
+        const productoAgregadoAlCart = cartList.filter(i => i.id === product.id)
+        
+        if(productoAgregadoAlCart.length > 0){
+
+            const pos = cartList.map(i => i.id).indexOf(product.id) // <-- posicion del porducto en el Cart[] 
+     
+            cartList[pos].quantity += 1;
+            cartList[pos].total += cartList[pos].price
+ 
+        }
+
+        setCartState({...cartState, cart: cartList, cartCount:getCartCount(), totalPrice:getTotalPrice()})
+
+    }
+//=====================================================================
+                         //decreseQuantity
+//===================================================================== 
+
+    function decreseQuantity(product){
+        const cartList = cartState.cart;
+        const productoAgregadoAlCart = cartList.filter(i => i.id === product.id)
+        
+        if(productoAgregadoAlCart.length > 0){
+
+            const pos = cartList.map(i => i.id).indexOf(product.id) // <-- posicion del porducto en el Cart[] 
+     
+            cartList[pos].quantity -= 1;
+            cartList[pos].total -= cartList[pos].price
+ 
+        }
+
+        setCartState({...cartState, cart: cartList, cartCount:getCartCount(), totalPrice:getTotalPrice()})
+    }
+
+//=====================================================================
+                         //getCartCount
+//=====================================================================     
+
+//recorre todo el array cart y de cada objeto obtiene el valor quantity y devuelve un solo valor 
 
     function getCartCount(){
           return cartState.cart.reduce((acumulador, valorActual) => acumulador + valorActual.quantity, 0) 
     }
 
-  
+//=====================================================================
+                         //getTotalPrice
+//===================================================================== 
    function getTotalPrice(){
         return cartState.cart.reduce((acumulador, valorActual) => acumulador + valorActual.total, 0)
    }
