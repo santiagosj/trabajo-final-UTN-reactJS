@@ -5,14 +5,13 @@ import './Cart.scss'
 
 const Cart = () => {
 
-     const{ cart,totalPrice }= useContext(CartContext)
-    
-     //
+     const{ cart, totalPrice }= useContext(CartContext)
 
      const checkout = ()=> {
        totalPrice > 0 ? 
        alert(`El total de su compra es: $ ${totalPrice} \n ✨Gracias por elegirnos vuelva pronto✨`) : 
        alert(`No hay productos en el carrito 🛒`)
+       
      }
 
     return (
@@ -29,7 +28,7 @@ const Cart = () => {
                 </tr>
             </tfoot> 
       </table>
-        <button onClick={checkout}>Comprar</button>
+        <button onClick={checkout} className='checkout'>Comprar</button>
       </div>
     )
 }

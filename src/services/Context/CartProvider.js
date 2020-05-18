@@ -41,6 +41,7 @@ const CartProvider = ({children}) => {
            const pos = cartList.map(i => i.id).indexOf(product.id) // <-- posicion del porducto en el Cart[] 
     
            cartList[pos].quantity += 1;
+
            cartList[pos].total += cartList[pos].price
 
        }else{
@@ -106,7 +107,7 @@ const CartProvider = ({children}) => {
     }
 
 //=====================================================================
-                         //getCartCount
+                         //getCartCount(helper)
 //=====================================================================     
 
 //recorre todo el array cart y de cada objeto obtiene el valor quantity y devuelve un solo valor 
@@ -116,11 +117,15 @@ const CartProvider = ({children}) => {
     }
 
 //=====================================================================
-                         //getTotalPrice
+                         //getTotalPrice(helper)
 //===================================================================== 
    function getTotalPrice(){
         return cartState.cart.reduce((acumulador, valorActual) => acumulador + valorActual.total, 0)
    }
+   
+//=====================================================================
+                             //PROVIDER
+//===================================================================== 
 
     return (
         <CartContext.Provider value={cartState}>

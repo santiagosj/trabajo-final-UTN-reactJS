@@ -7,7 +7,7 @@ const Products = ({products}) => {
     return (
         <div className='products-container'>
 
-          { products.length && products.map(product => 
+          { products && products.map(product => 
                   <Product 
                       product={product} 
                       key={product.id}/> 

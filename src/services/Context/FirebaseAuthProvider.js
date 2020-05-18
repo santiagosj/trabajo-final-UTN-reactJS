@@ -18,7 +18,7 @@ const handleSignOut = () => {
     auth.logout()
 }
 
-const FirebaseAuthProvider = (props) => { 
+const FirebaseAuthProvider = ({children}) => { 
     
     return (
         <firebaseAuth.Provider
@@ -27,7 +27,7 @@ const FirebaseAuthProvider = (props) => {
                handleSignIn,
                handleSignOut
             }}>
-               {props.children}
+               {children}
         </firebaseAuth.Provider>
     )
 }

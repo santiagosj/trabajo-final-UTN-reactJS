@@ -1,5 +1,22 @@
 .cart-container{
   padding: 20px;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  button:hover{
+    cursor: pointer;
+  }
+  .checkout{
+    width: fit-content;
+    font-size: 43px;
+    background: #00ff1d;
+    border: none;
+    padding: 10px;
+    color: white;
+    &:hover{
+      cursor: pointer;
+    }
+  }
 }
 #customers {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
