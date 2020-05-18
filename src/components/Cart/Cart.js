@@ -3,17 +3,11 @@ import CartItem from './CartItem'
 import {CartContext} from '../../services/Context/CartProvider'
 import './Cart.scss'
 
-/**
- * DEFINIR - 
- * changeProductQuantity
- */
-
 const Cart = () => {
 
-     const{ cart }= useContext(CartContext)
+     const{ cart,totalPrice }= useContext(CartContext)
     
-
-     const totalPrice = cart.reduce((acc, curr) => acc + curr.price, 0);
+     //
 
      const checkout = ()=> {
        totalPrice > 0 ? 
@@ -23,6 +17,7 @@ const Cart = () => {
 
     return (
       <div className="cart-container">
+        <h1 style={{textAlign:'center'}}> Tu carrito de compras <span role='img' aria-label="Carrito">🛒</span>  </h1>
       <table id="customers">
             <CartHeader/>
             <CartItem 

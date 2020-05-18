@@ -4,73 +4,89 @@ export const CartContext = createContext()
 
 const CartProvider = ({children}) => {
 
+    //estado inicial del cart
     const initState = {
-        cart:[],
-        cartCount:0,
-        addProduct: addProduct,
-        removeProduct: removeProduct
+        cart:[], //<-- lista de productos únicos
+        cartCount:0, //<-- cantidad de productos en el cart
+        addProduct: addProduct, //<-- funcion para agregar productos al Cart
+        removeProduct: removeProduct, // <-- funcion para sacar un producto 
+        totalPrice: 0 //<-- precio total del Cart
     }
+
+    /**
+     * 
+     * producto:{
+     *      quantity[number]
+     *      id[string]
+     *      price[number]
+     *      total:[number]
+     *      title[string]
+     *      description[string]
+     *    }
+     * 
+     */
 
     const [cartState, setCartState] = useState(initState)
     
     //agregar productos al carrito
 
     function addProduct(product){
-       let cartList = cartState.cart
+       let cartList = cartState.cart // propiedad cart[] del estado del Cart
+       // let tp = cartState.totalPrice // propiedad totalPrice del estado del Cart
 
+       //producto nuevo a agregar al carrito 
        const newProduct = {
            quantity:1,
            id:product.id,
            price:product.price,
            title:product.title,
-           description:product.description
+           description:product.description,
+           total:product.price
        }
-       
-       const productoAgregadoAlCart = cartList.filter(i => i.id === product.id) //producto agregado al carrito
+
+       //producto único agregado al carrito
+       const productoAgregadoAlCart = cartList.filter(i => i.id === product.id) 
 
        if(productoAgregadoAlCart.length > 0){
-           const pos = cartList.map(i => i.id).indexOf(product.id)
+
+           const pos = cartList.map(i => i.id).indexOf(product.id) // pos = id del producto
+
            cartList[pos].quantity += 1;
+           
+           cartList[pos].total += cartList[pos].price
+
        }else{
+
            cartList.push(newProduct)
+
        }
-       setCartState({...cartState, cart: cartList, cartCount:getCartCount()})
-       console.log(productoAgregadoAlCart)
+
+       setCartState({...cartState, cart: cartList, cartCount:getCartCount(), totalPrice:getTotalPrice()})
+       
     } 
 
     //Sacar productos del carrito
 
     function removeProduct(index){
 
-        const cartLlist = cartState.cart
+        const cartList = cartState.cart;
 
-        cartLlist.splice(index, 1)
+        cartList.splice(index, 1);
        
-        setCartState({...cartState, cart: cartLlist, cartCount:getCartCount()})
+        setCartState({...cartState, cart: cartList, cartCount:getCartCount(), totalPrice:getTotalPrice()})
 
     }
 
-    //Cuenta productos 
+    //recorre todo el array cart y de cada objeto obtiene el valor quantity y devuelve un solo valor 
 
     function getCartCount(){
-          let count = 0;
-
-          if(cartState.cart.length > 0){
-              cartState.cart.forEach(p => {
-                  count += p.quantity
-              })
-          }
-
-          return count
+          return cartState.cart.reduce((acumulador, valorActual) => acumulador + valorActual.quantity, 0) 
     }
 
-    //Precio total 
-    /**
-     * 1 - increseQuantity - equivalente a addProduct
-     * 2 - decreseQuantity - saca del carrito 1 producto
-     * 2 - addProduct - agrega 1 producto al carrito 
-     * 3 - removeProduct - elimna del cart el producto sin importar la cantidad
-     */
+  
+   function getTotalPrice(){
+        return cartState.cart.reduce((acumulador, valorActual) => acumulador + valorActual.total, 0)
+   }
 
     return (
         <CartContext.Provider value={cartState}>
@@ -81,6 +97,3 @@ const CartProvider = ({children}) => {
 
 export default CartProvider
 
-/**
- * 
- */

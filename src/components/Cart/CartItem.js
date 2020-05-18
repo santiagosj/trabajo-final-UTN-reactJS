@@ -19,9 +19,9 @@ const CartItem = ({
     const rows = cartData.map((product,index)=>{
 
         const increseQuantity = () =>{
-            console.log(product.quantity += 1 )
-         }
-     
+            console.table(product)
+        }
+        console.log(product)
          const decreseQuantity = () =>{
             if(product.quantity > 1){
                console.log(product.quantity -= 1 )

@@ -32,11 +32,14 @@ const ProductDetail = ({match}) => {
                 <p className="product-description">
                    {data.description} <br/>
                    ---------------------------------------------------<br/>
-                   precio: $ {data.price} | categoría: {data.category}
+                   precio: $ {data.price} | categoría: {data.category} <br/>
+                   ---------------------------------------------------<br/>
+                   <button onClick={()=>{console.log(data)}}>Agregar al Carrito</button>
                 </p>
                 
                  
             </section>
+
             <Link to={'/products'}>Volver </Link>
         </div>
     )
