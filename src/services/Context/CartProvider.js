@@ -84,7 +84,7 @@ const CartProvider = ({children}) => {
         }
 
         setCartState({...cartState, cart: cartList, cartCount:getCartCount(), totalPrice:getTotalPrice()})
-
+        console.log(product)
     }
 //=====================================================================
                          //decreseQuantity

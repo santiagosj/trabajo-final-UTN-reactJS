@@ -28,7 +28,7 @@ const Cart = () => {
                 </tr>
             </tfoot> 
       </table>
-        <button onClick={checkout} className='checkout'>Comprar</button>
+        <button onClick={checkout} className='btn btn-2'>Comprar</button>
       </div>
     )
 }

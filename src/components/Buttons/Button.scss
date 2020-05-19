@@ -1,10 +1,4 @@
-.cart-container{
-  padding: 20px;
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-
-  .btn {
+.btn {
     background: none;
     border: 2px solid;
     border-bottom-width: 4px;
@@ -31,27 +25,4 @@
     100% {
       background-position: 5em 0px;
     }
-  }
-}
-#customers {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: separate;
-    width: 77%;
-    margin: auto;
-
-  }
-  
-  #customers td, #customers th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  #customers tr:nth-child(even){background-color: #f2f2f2;}
-  
-  #customers th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: rgb(255, 238, 0);
-    color: black;
   }

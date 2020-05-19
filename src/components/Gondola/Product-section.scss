@@ -19,12 +19,29 @@
             transition: .3s ease-in-out;
             box-shadow: 0px 0px 0px 1px rgb(204, 204, 204);
         }
-        .link{
-            text-decoration: none;
-            color: black;
-            box-shadow: 0px 0px 0px 1px;
-            padding: 16px;
-        }
+        
+        .btn-6 {
+            $color: #f9879b;
+            color: $color;
+            
+            &:hover {
+              animation: pulse 1s ease-in infinite;
+              background: radial-gradient(circle, rgba($color,0.25) 43%, transparent 50%) 0 0 / 1em 1em
+                        , radial-gradient(circle, rgba($color,0.25) 43%, transparent 50%) 0.5em 0.5em / 2em 2em;
+              color: darken(adjust-hue($color,180),30%);
+            }
+          }
+          
+          @keyframes pulse {  
+            50% {
+              background-position: 0.66em 0.66em, -0.33em -0.33em;
+            }
+            
+            100% {
+              background-size: 2em 2em, 1em 1em;
+              background-position: -1.5em -1.5em, -1em -1em;
+            }
+          }
        
         .shelf-item__buy-btn{
             height: 50px;
