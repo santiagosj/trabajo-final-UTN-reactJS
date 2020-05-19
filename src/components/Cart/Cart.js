@@ -24,7 +24,7 @@ const Cart = () => {
             />
             <tfoot>
                 <tr>
-                  <td>Precio total: ${totalPrice}</td>
+                  <td>Valor total a pagar: ${totalPrice}</td>
                 </tr>
             </tfoot> 
       </table>

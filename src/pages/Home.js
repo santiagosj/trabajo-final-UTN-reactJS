@@ -3,14 +3,15 @@ import Products from '../components/Gondola/Products'
 import {db} from '../services/Firebase/firebase'
 import './Home.scss'
 
-function useLocalStorage(key, initialValue) {
+function useSessionStorage(key, initialValue) {
 
     const [storedValue, setStoredValue] = useState(() => {
       try {
       
-           const item = typeof window !== 'undefined' && window.localStorage.getItem(key);
+           const item = typeof window !== 'undefined' && window.sessionStorage.getItem(key);
         
-          return item ? JSON.parse(item) : initialValue;
+           return item ? JSON.parse(item) : initialValue;
+
       } catch (error) {
       
         console.log(error);
@@ -26,9 +27,9 @@ function useLocalStorage(key, initialValue) {
         
           const valueToStore = value instanceof Function ? value(storedValue) : value;
         
-          setStoredValue(valueToStore);
+           setStoredValue(valueToStore);
       
-          window.localStorage.setItem(key, JSON.stringify(valueToStore));
+           window.sessionStorage.setItem(key, JSON.stringify(valueToStore));
 
       } catch (error) {
         
@@ -43,7 +44,7 @@ function useLocalStorage(key, initialValue) {
 
 
 const Home = () => {
-    const [product, setProduct ] = useLocalStorage('ProductCategory', '')
+    const [product, setProduct ] = useSessionStorage('ProductCategory', '')
 
     function handleChangeProduct (e) {
         setProduct(e.target.value);
@@ -80,6 +81,7 @@ const Home = () => {
     
        const filterDropdown = data.products.filter(result => result.category === product)
        
+       //let pr = product ? true : false
     return (
         <section className="home-container">
 
@@ -87,16 +89,18 @@ const Home = () => {
                 <div className="filter">
                     <label id="label-table">Categorías</label>
                         <select
-                              value={product}
+                              value={product || ''}
                               onChange={handleChangeProduct}
+                              defaultValue={'DEFAULT' } 
+                              selected
                             >
 
-                              <option disabled={product} selected value> -- seleccionar categoría -- </option>
+                              <option disabled={product}  value={'DEFAULT'}> -- seleccionar categoría -- </option>
 
                               {uniqueProduct.map(product => (
                                   <option 
                                       key={product.id} 
-                                      value={product.category}
+                                      value={product.category }
                                   >
                                       {product.category}
                                   </option>
