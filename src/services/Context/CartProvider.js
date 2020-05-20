@@ -1,30 +1,28 @@
 import React,{useState, createContext} from 'react'
-
+//import {cartReducer} from '../Reducers/CartReducer'
 export const CartContext = createContext()
 
 const CartProvider = ({children}) => {
 
-    //estado inicial del cart
-    const initState = {
-        cart:[], //<-- lista de productos únicos
-        cartCount:0, //<-- cantidad de productos en el cart
-        totalPrice: 0, //<-- precio total del Cart
-        addProduct: addProduct, //<-- función para agregar productos al Cart
-        removeProduct: removeProduct, // <-- función para sacar el producto del Cart 
-        increseQuantity:increseQuantity,// <--función para incrementar la cantidad
-        decreseQuantity:decreseQuantity // <-- función para disminuir la cantidad
+    const cartInitState = {
+        products:[], //<-- lista de productos únicos
+        cartCount:0, //<-- cantidad de productos en el products -- Quantity
+        totalPrice: 0, //<-- precio total del Cart -- total
+        addProduct, //<-- función para agregar productos al Cart
+        removeProduct, // <-- función para sacar el producto del Cart 
+        changeProductQuantity
     }
 
-    const [cartState, setCartState] = useState(initState)
+    const [cartState, setCartState] = useState(cartInitState)
+
+    const productList = cartState.products
 
 //=====================================================================
-                //agregar productos al carrito
+                   //agregar productos al carrito
 //=====================================================================
 
     function addProduct(product){
-       const cartList = cartState.cart // propiedad cart[] del estado del Cart
-      
-       //producto nuevo a agregar al carrito 
+
        const newProduct = {
            quantity:1,
            id:product.id,
@@ -34,96 +32,90 @@ const CartProvider = ({children}) => {
            total:product.price
        }
 
-       const productoAgregadoAlCart = cartList.filter(i => i.id === product.id) // <-- producto único agregado al carrito
+       if(productList.filter(i => i.id === product.id).length > 0){
 
-       if(productoAgregadoAlCart.length > 0){
-
-           const pos = cartList.map(i => i.id).indexOf(product.id) // <-- posicion del porducto en el Cart[] 
+           const pos = productList.map(i => i.id).indexOf(product.id) // <-- posicion del porducto en el Cart[] 
     
-           cartList[pos].quantity += 1;
+           productList[pos].quantity += 1;
 
-           cartList[pos].total += cartList[pos].price
+           productList[pos].total += productList[pos].price
 
        }else{
-
-           cartList.push(newProduct)
-
+           productList.push(newProduct)
        }
 
-       setCartState({...cartState, cart: cartList, cartCount:getCartCount(), totalPrice:getTotalPrice()})
+        setCartState({
+            ...cartState, 
+            products: productList,
+            cartCount:getCartCount(), 
+            totalPrice:getTotalPrice()
+        })
        
     } 
 
 //=====================================================================
                     //Sacar productos del carrito
 //=====================================================================
+
     function removeProduct(index){
 
-        const cartList = cartState.cart;
-
-        cartList.splice(index, 1);
+        productList.splice(index, 1);
        
-        setCartState({...cartState, cart: cartList, cartCount:getCartCount(), totalPrice:getTotalPrice()})
-
+        setCartState({
+             ...cartState, 
+             products: productList, 
+             cartCount:getCartCount(), 
+             totalPrice:getTotalPrice()
+        })
     }
+
 //=====================================================================
-                         //increseQuantity
-//=====================================================================    
-
-    function increseQuantity(product){
-        const cartList = cartState.cart;
-        const productoAgregadoAlCart = cartList.filter(i => i.id === product.id)
-        
-        if(productoAgregadoAlCart.length > 0){
-
-            const pos = cartList.map(i => i.id).indexOf(product.id) // <-- posicion del porducto en el Cart[] 
-     
-            cartList[pos].quantity += 1;
-            cartList[pos].total += cartList[pos].price
- 
-        }
-
-        setCartState({...cartState, cart: cartList, cartCount:getCartCount(), totalPrice:getTotalPrice()})
-        console.log(product)
-    }
+                         //changeProductQuantity
 //=====================================================================
-                         //decreseQuantity
-//===================================================================== 
 
-    function decreseQuantity(product){
-        const cartList = cartState.cart;
-        const productoAgregadoAlCart = cartList.filter(i => i.id === product.id)
+    function changeProductQuantity(action, product){
+       
         
-        if(productoAgregadoAlCart.length > 0){
+        if(productList.filter(i => i.id === product.id).length > 0){
 
-            const pos = cartList.map(i => i.id).indexOf(product.id) // <-- posicion del porducto en el Cart[] 
-     
-            cartList[pos].quantity -= 1;
-            cartList[pos].total -= cartList[pos].price
- 
+            const pos = productList.map(i => i.id).indexOf(product.id) // <-- posicion del porducto en el Cart[] 
+
+            if(action === '+'){
+               ++productList[pos].quantity;
+                productList[pos].total += productList[pos].price
+            }else if (action === '-') {
+                --productList[pos].quantity;
+                productList[pos].total -= productList[pos].price
+            }
+
         }
-
-        setCartState({...cartState, cart: cartList, cartCount:getCartCount(), totalPrice:getTotalPrice()})
-    }
+        setCartState({
+            ...cartState, 
+            products: productList, 
+            cartCount: getCartCount(), 
+            totalPrice: getTotalPrice()
+        })
+     }
 
 //=====================================================================
                          //getCartCount(helper)
 //=====================================================================     
 
-//recorre todo el array cart y de cada objeto obtiene el valor quantity y devuelve un solo valor 
+//recorre todo el array products, obtiene el valor quantity y devuelve un solo valor 
 
     function getCartCount(){
-          return cartState.cart.reduce((acumulador, valorActual) => acumulador + valorActual.quantity, 0) 
+        return cartState.products.reduce((acumulador, valorActual) => acumulador + valorActual.quantity, 0) 
     }
 
-//=====================================================================
+//===================================================================== 
                          //getTotalPrice(helper)
 //===================================================================== 
-   function getTotalPrice(){
-        return cartState.cart.reduce((acumulador, valorActual) => acumulador + valorActual.total, 0)
-   }
+
+    function getTotalPrice(){
+        return cartState.products.reduce((acumulador, valorActual) => acumulador + valorActual.total, 0)
+    }
    
-//=====================================================================
+//===================================================================== 
                              //PROVIDER
 //===================================================================== 
 

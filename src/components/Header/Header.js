@@ -46,7 +46,7 @@ const Header = ({
                 <div className={`Nav`} onClick={handleMenuToggle}>
                     <span>{userName}</span>
                     <div className={`${active ? 'Nav-active' : 'Nav-inactive'}`}>
-                        <button onClick={handleLogout}>logout</button>
+                        <button onClick={handleLogout} className="btn btn-2">logout</button>
                     </div>
                 </div>   
              </div>

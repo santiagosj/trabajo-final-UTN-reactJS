@@ -21,14 +21,17 @@ const CartItem = ({
                        ||                                                 //===============>>>> 💥💥👾👾👾👾
                     (product.quantity === 1 && `${product.quantity} Unidad `) 
                     } 
-                    <button onClick={()=> cartState.increseQuantity(product)}> + </button> Agregar unidades | <button onClick={()=> cartState.decreseQuantity(product)} disabled={product.quantity === 1 && true}> - </button> <span style={unidiadesStyle}>Quitar Unidades</span> 
+                    <button onClick={()=> cartState.changeProductQuantity('+', product)}> + </button> Agregar unidades | 
+                    <button onClick={()=> cartState.changeProductQuantity('-', product)} disabled={product.quantity === 1 && true}> - </button> 
+                    <span style={unidiadesStyle}>Quitar Unidades</span> 
                 </td>
                 <td>
-                   <button onClick={()=> cartState.removeProduct(cartState.cart.indexOf(product))}> X </button> | Sacar del carrito 
+                   <button onClick={()=> cartState.removeProduct(cartState.products.indexOf(product))}> X </button> | Sacar del carrito 
                 </td>
              </tr>
         )
     })
+    
     return (
        <tbody>{rows}</tbody>    
     )

@@ -5,7 +5,7 @@ import './Cart.scss'
 
 const Cart = () => {
 
-     const{ cart, totalPrice }= useContext(CartContext)
+     const{ products, totalPrice }= useContext(CartContext)
 
      const checkout = ()=> {
        totalPrice > 0 ? 
@@ -20,7 +20,7 @@ const Cart = () => {
       <table id="customers">
             <CartHeader/>
             <CartItem 
-              cartData={cart}
+              cartData={products}
             />
             <tfoot>
                 <tr>

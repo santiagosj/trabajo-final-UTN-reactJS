@@ -5,8 +5,8 @@ import { Carousel } from 'react-responsive-carousel';
 import Thumb from '../components/Thumb/Thumb'
 import './ProductDetail.scss';
 import { Link } from 'react-router-dom'
-//import {CartContext} from '../services/Context/CartProvider'
 import Button from '../components/Buttons/Button' 
+
 const ProductDetail = ({match}) => {
 
     const [ data, setData]=useState({})
@@ -44,23 +44,11 @@ const ProductDetail = ({match}) => {
                    <Button product={data}/>
                 </p>
                 
-                 
             </section>
 
             <Link to={'/products'}>Volver </Link>
         </div>
     )
 }
-
-
-/*const AddBtn = ({product}) => {
-
-    const productState = useContext(CartContext)
-    
-    return(
-        <button className="shelf-item__buy-btn" onClick={()=> productState.addProduct(product)}>Agregar al carrito</button>
-    )
-
-}*/
 
 export default ProductDetail
