@@ -24,8 +24,6 @@ const ProductDetail = ({match}) => {
         
       }, [match])  
 
-     console.log(data)
-
     return (
         <div className="product-detail-section">
             <h1>Product Detail page </h1>
@@ -41,7 +39,7 @@ const ProductDetail = ({match}) => {
                    ---------------------------------------------------<br/>
                    precio: $ {data.price} | categoría: {data.category} <br/>
                    ---------------------------------------------------<br/>
-                   <Button product={data}/>
+                   { data && <Button product={data}/>}
                 </p>
                 
             </section>
